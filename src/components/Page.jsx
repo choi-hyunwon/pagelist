@@ -1,12 +1,12 @@
 import React from 'react';
 import {Form, Input, Button, Radio} from "antd";
-import {selectProjectData} from "../app/slice";
-import {createCategoryApi, updateProjectApi} from "../api/adaptor.api";
+import {selectCategoryData} from "../app/slice";
+import {createPageApi, updatePageApi} from "../api/adaptor.api";
 import {useSelector} from "react-redux";
 import {format} from 'date-fns'
 
 const Page = ({subType}) => {
-    const projectData = useSelector(selectProjectData);
+    const categoryData = useSelector(selectCategoryData);
     const layout = {
         labelCol: {
             span: 6,
@@ -20,17 +20,22 @@ const Page = ({subType}) => {
     };
 
     const onFinish = (values) => {
-        alert("페이지 생성 진행 중");
-        // let categoryData = {
-        //     title : values.title,
-        //     updatedDate : format(new Date(), "yyyy-MM-dd HH:mm:ss"),
-        // }
-        // if(subType === "create") {
-        //     categoryData = {...categoryData, ...{id : Math.random().toString(36).substr(2, 16), createdDate : format(new Date(), "yyyy-MM-dd HH:mm:ss")}}
-        //     createCategoryApi(categoryData);
-        // } else {
-        //     updateProjectApi(projectData);
-        // }
+        let pageData = {
+            title : values.title,
+            state : values.state,
+            url : values.url,
+            updatedDate : format(new Date(), "yyyy-MM-dd HH:mm:ss"),
+        }
+        if(subType === "create") {
+            pageData = {...pageData, ...{
+                parentId : categoryData.id,
+                id : Math.random().toString(36).substr(2, 16),
+                createdDate : format(new Date(), "yyyy-MM-dd HH:mm:ss"),
+            }};
+            createPageApi(pageData);
+        } else {
+            updatePageApi(pageData);
+        }
     };
 
     return (

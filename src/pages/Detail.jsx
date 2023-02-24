@@ -24,10 +24,16 @@ const Detail = () => {
     const [treeData, setTreeData] = useState([]);
     const [url, setUrl] = useState("");
 
+    const createPage = () => dispatch(setModal({show: true, type: 'page', subType : 'create'}));
     const updateCategory = () => dispatch(setModal({show: true, type: 'category', subType : 'update'}));
     const deleteCategory = () => dispatch(setModal({show: true, type: 'delete-category'}));
 
     const items = [
+        {
+            label: '하위 페이지 생성',
+            key: '0',
+            onClick : () => {createPage()}
+        },
         {
             label: '수정',
             key: '1',
