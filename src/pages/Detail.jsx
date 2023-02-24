@@ -9,7 +9,8 @@ import {
     selectIsLoggedIn,
     setCategoryData, setProjectData,
 } from "../app/slice";
-import {Tree, Tag, Dropdown} from 'antd';
+import {Tree, Tag, Dropdown, Button} from 'antd';
+import {PlusOutlined} from "@ant-design/icons";
 
 const { DirectoryTree } = Tree;
 
@@ -59,11 +60,19 @@ const Detail = () => {
                 let y = {};
                 y['title'] = <>
                     {!isLoggedIn
-                        ? val['title']
-                        : <div onClick={() => {dispatch(setCategoryData({title : val.title, id : val.id, parentId : val.parentId}))}}>
-                            {val['title']}
-                            <Dropdown.Button menu={menuProps}/>
-                        </div >
+                        ? (
+                            <div className="text">
+                                {val['title']}
+                            </div >
+                        )
+                        : (
+                            <>
+                                <div className="text" onClick={() => {dispatch(setCategoryData({title : val.title, id : val.id, parentId : val.parentId}))}}>
+                                    {val['title']}
+                                </div >
+                                <Dropdown.Button style={{width: 32}} menu={menuProps}/>
+                            </>
+                        )
                     }
                 </>
                 y['key'] = idx;
@@ -84,7 +93,7 @@ const Detail = () => {
                 });
                 newArr.push(y);
             });
-            if(isLoggedIn) newArr.push({title : "+ 카테고리 생성", key : '999'});
+            // if(isLoggedIn) newArr.push({title : "+ 카테고리 생성", key : '999'});
             setTreeData(newArr);
         }
     }, [categoryList]);
@@ -100,9 +109,17 @@ const Detail = () => {
         }
     };
 
+    const onClick = () => {
+        categoryData.id !== "" && dispatch(setCategoryData({title : "", id : "", parentId : ""}));
+        dispatch(setModal({show: true, type: 'category', subType : 'create'}));
+    };
+
     return (
-         <div style={{display : 'flex'}}>
-            <div style={{width: '35%'}}>
+        <div style={{display : 'flex'}}>
+            <div style={{
+                // width: '35%'
+                width: '300px'
+            }}>
                 <DirectoryTree
                     multiple
                     defaultExpandAll
@@ -111,8 +128,16 @@ const Detail = () => {
                     defaultSelectedKeys={['0-0']}
                     style={{fontSize : '16px', marginTop : '10px'}}
                 />
+                {
+                    isLoggedIn && (
+                        <Button type="text" className="createBtn" icon={<PlusOutlined />} onClick={onClick}>카테고리 생성</Button>
+                    )
+                }
             </div>
-            <div style={{width: '85%',height: '800px'}}>
+            <div style={{
+                width: '85%',
+                height: '800px'
+            }}>
                 <iframe src={url} height="100%" width="100%"/>
             </div>
         </div>

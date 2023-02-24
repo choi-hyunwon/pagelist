@@ -7,3 +7,38 @@
     cursor: pointer;
 }
 
+.ant-tree-title {
+    display: inline-flex;
+    align-items: center;
+}
+
+.ant-tree-title div.text {
+    display: inline-block;
+    width: 150px;
+    margin-left: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle {
+    vertical-align: baseline;
+}
+
+.createBtn {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+    text-align: right;
+    font-size: 16px;
+}
+
+.createBtn:hover {
+    color: #40a9ff;
+    font-weight: bold;
+}
+
+.createBtn .anticon {
+    line-height: 2;
+    font-weight: bold;
+}
