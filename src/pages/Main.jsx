@@ -70,7 +70,7 @@ function Main() {
                             style={{width: 300}}
                             onClick={() => {dispatch(setProjectData({title : item.title, id : item.id}))}}
                         >
-                            <div onClick={() => {navigate(`/detail/${item.id}`)}}>
+                            <div style={{cursor: 'pointer'}} onClick={() => {navigate(`/detail/${item.id}`)}}>
                                 <p>생성일 : {item.createdDate}</p>
                                 <p>수정일 : {item.updatedDate}</p>
                             </div>
