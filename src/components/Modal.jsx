@@ -4,7 +4,9 @@ import {setModal, selectModal} from "../app/slice";
 import {useDispatch, useSelector} from "react-redux";
 import Join from "./Join";
 import Project from "./Project";
-import {deleteProjectApi} from "../api/adaptor.api";
+import {deleteProjectApi, deleteCategoryApi} from "../api/adaptor.api";
+import Category from "./Category";
+import Page from "./Page";
 
 const Default = () => {
     const dispatch = useDispatch();
@@ -66,6 +68,39 @@ const Default = () => {
         },
         "update-project-success": {
             body : "프로젝트 업데이트를 성공했습니다."
+        },
+        "category" : {
+            title : `카테고리 ${subType === "create" ? "생성" : "수정"}`,
+            body : (<Category subType={subType}/>),
+            closable : false,
+            okEvent : () => {
+                handleCancel();
+            },
+            width : 520
+        },
+        "create-category-success" : {
+            body : "카테고리 생성에 성공했습니다."
+        },
+        "delete-category" : {
+            body : "카테고리를 삭제하시겠습니까?",
+            footer : [
+                <Button key="submit" type="primary" onClick={deleteCategoryApi}>OK</Button>
+            ]
+        },
+        "delete-category-success": {
+            body : "카테고리 삭제를 성공했습니다."
+        },
+        "update-category-success": {
+            body : "카테고리 업데이트를 성공했습니다."
+        },
+        "page" : {
+            title : `페이지 ${subType === "create" ? "생성" : "수정"}`,
+            body : (<Page subType={subType}/>),
+            closable : false,
+            okEvent : () => {
+                handleCancel();
+            },
+            width : 520
         },
     }
     return (
