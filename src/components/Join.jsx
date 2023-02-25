@@ -48,7 +48,7 @@ const Join = () => {
     return (
         <Form
             {...layout}
-            style={{maxWidth: '600px', margin: '0 auto'}}
+            style={{maxWidth: 600 , margin: '0 auto'}}
             name="normal_login"
             className="login-form"
             initialValues={{

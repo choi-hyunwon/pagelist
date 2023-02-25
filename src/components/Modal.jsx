@@ -4,7 +4,7 @@ import {setModal, selectModal} from "../app/slice";
 import {useDispatch, useSelector} from "react-redux";
 import Join from "./Join";
 import Project from "./Project";
-import {deleteProjectApi, deleteCategoryApi} from "../api/adaptor.api";
+import {deleteProjectApi, deleteCategoryApi, deletePageApi} from "../api/adaptor.api";
 import Category from "./Category";
 import Page from "./Page";
 
@@ -43,7 +43,7 @@ const Default = () => {
             okEvent : () => {
                 handleCancel();
             },
-            width : 520
+            width : 400
         },
         "project" : {
             title : `프로젝트 ${subType === "create" ? "생성" : "수정"}`,
@@ -52,7 +52,7 @@ const Default = () => {
             okEvent : () => {
                 handleCancel();
             },
-            width : 520
+            width : 400
         },
         "create-project-success" : {
             body : "프로젝트 생성에 성공했습니다."
@@ -76,7 +76,7 @@ const Default = () => {
             okEvent : () => {
                 handleCancel();
             },
-            width : 520
+            width : 400
         },
         "create-category-success" : {
             body : "카테고리 생성에 성공했습니다."
@@ -100,7 +100,22 @@ const Default = () => {
             okEvent : () => {
                 handleCancel();
             },
-            width : 520
+            width : 400
+        },
+        "create-page-success" : {
+            body : "페이지 생성에 성공했습니다."
+        },
+        "delete-page" : {
+            body : "페이지를 삭제하시겠습니까?",
+            footer : [
+                <Button key="submit" type="primary" onClick={deletePageApi}>OK</Button>
+            ]
+        },
+        "delete-page-success": {
+            body : "페이지 삭제를 성공했습니다."
+        },
+        "update-page-success": {
+            body : "페이지 업데이트를 성공했습니다."
         },
     }
     return (

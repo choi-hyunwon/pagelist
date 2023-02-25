@@ -45,23 +45,11 @@ function Main() {
     return (
         <div style={{textAlign:'center'}}>
             {
-                <Space style={{marginTop:  '20px', flexWrap: 'wrap'}} size={16}>
+                <Space style={{marginTop:  20, flexWrap: 'wrap'}} size={16}>
                     <div onClick={createProject} style={uploadStyle} className={"upload_btn"}>
-                        <PlusOutlined style={{marginTop:  '20%', marginBottom : '10px'}}/>
+                        <PlusOutlined style={{marginTop:  '20%', marginBottom : 10}}/>
                         <div>프로젝트 생성</div>
                     </div>
-                    {/*<Card*/}
-                    {/*    title={"프로젝트 생성"}*/}
-                    {/*    style={{*/}
-                    {/*        width: 300,*/}
-                    {/*        height: '179px'*/}
-                    {/*    }}*/}
-                    {/*>*/}
-                    {/*    <div style={{display : 'flex', marginTop : '15px'}}>*/}
-                    {/*        <Input placeholder="프로젝트명을 입력해주세요."/>*/}
-                    {/*        <Button type="primary" htmlType="submit">Create</Button>*/}
-                    {/*    </div>*/}
-                    {/*</Card>*/}
                     {projectList.map((item, index) => (
                         <Card
                             key={index}
@@ -70,7 +58,7 @@ function Main() {
                             style={{width: 300}}
                             onClick={() => {dispatch(setProjectData({title : item.title, id : item.id}))}}
                         >
-                            <div onClick={() => {navigate(`/detail/${item.id}`)}}>
+                            <div style={{cursor: 'pointer'}} onClick={() => {navigate(`/detail/${item.id}`)}}>
                                 <p>생성일 : {item.createdDate}</p>
                                 <p>수정일 : {item.updatedDate}</p>
                             </div>

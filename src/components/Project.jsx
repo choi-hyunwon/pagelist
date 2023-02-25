@@ -47,7 +47,7 @@ const Project = ({subType}) => {
                     label="Title"
                     rules={[{required: true}]}
                 >
-                    <Input style={{width : '300px'}} placeholder="프로젝트명을 입력해주세요."/>
+                    <Input style={{width : 200}} placeholder="프로젝트명을 입력해주세요."/>
                 </Form.Item>
                 <Form.Item
                     name="submit"

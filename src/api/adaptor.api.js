@@ -1,10 +1,11 @@
 import store from "../app/store";
 import {auth, firestore} from "../firebase/Firebase";
-import {setProjectList, setModal} from "../app/slice";
+import {setProjectList, setModal, setPageList} from "../app/slice";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 
 const user = firestore.collection("user");
 const project = firestore.collection("project");
+const page = firestore.collection("page");
 
 export const createUserWithEmailAndPasswordApi = (values) => {
     const {email, password} = values.user;
@@ -37,6 +38,12 @@ export const getProjectApi = () => {
             projectList.push(docs.data())
         })
         store.dispatch(setProjectList(projectList))
+    });
+};
+
+export const getPageApi = (id) => {
+    return page.doc(id).get().then((doc) => {
+        store.dispatch(setPageList(doc.data().list))
     });
 };
 
@@ -133,53 +140,55 @@ export const deleteCategoryApi = () => {
 
 export const createPageApi = (values) => {
     const post = store.getState().post;
-    const categoryList = [...post.categoryList];
-    categoryList.push({...values, page : []});
+    const pageList = [...post.pageList];
+    pageList.push({...values});
 
-    project.doc(post.projectData.id).update({
-        category : categoryList
+    page.doc(post.projectData.id).update({
+        list : pageList
     })
         .then(() => {
-            getProjectApi();
-            store.dispatch(setModal({show: true, type: "create-category-success"}));
+            getPageApi(post.projectData.id);
+            store.dispatch(setModal({show: true, type: "create-page-success"}));
         })
         .catch((error) => {
-            console.error("[createCategoryApi] Error : ", error);
+            console.error("[createPageApi] Error : ", error);
         });
 };
 
 export const updatePageApi = (values) => {
     const post = store.getState().post;
-    const categoryList = JSON.parse(JSON.stringify(post.categoryList));
-    categoryList.forEach((val) => {
-        if(val.id === post.categoryData.id) {
+    const pageList = JSON.parse(JSON.stringify(post.pageList));
+    pageList.forEach((val) => {
+        if(val.id === post.pageData.id) {
             val.title = values.title;
             val.updatedDate =  values.updatedDate;
+            val.url = values.url;
+            val.state = values.state;
         }
     });
-    project.doc(post.categoryData.parentId).update({
-        category : categoryList
+    page.doc(post.projectData.id).update({
+        list : pageList
     })
         .then(() => {
-            getProjectApi();
-            store.dispatch(setModal({show: true, type: "update-category-success"}));
+            getPageApi(post.projectData.id);
+            store.dispatch(setModal({show: true, type: "update-page-success"}));
         })
         .catch((error) => {
-            console.error("[updateCategoryApi] Error : ", error);
+            console.error("[updatePageApi] Error : ", error);
         });
 };
 
 export const deletePageApi = () => {
     const post = store.getState().post;
-    const categoryList = JSON.parse(JSON.stringify(post.categoryList));
-    project.doc(post.categoryData.parentId).update({
-        category : categoryList.filter(val => val.id !== post.categoryData.id)
+    const pageList = JSON.parse(JSON.stringify(post.pageList));
+    page.doc(post.projectData.id).update({
+        list : pageList.filter(val => val.id !== post.pageData.id)
     })
         .then(() => {
             getProjectApi();
-            store.dispatch(setModal({show: true, type: "delete-category-success"}));
+            store.dispatch(setModal({show: true, type: "delete-page-success"}));
         })
         .catch((error) => {
-            console.error("[deleteCategoryApi] Error : ", error);
+            console.error("[deletePageApi] Error : ", error);
         });
 };

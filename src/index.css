@@ -24,3 +24,21 @@ body {
 .site-layout .site-layout-background {
     background: #fff;
 }
+
+.ant-layout {
+    background: #fff;
+}
+
+.ant-btn-icon-only{
+    width: 20px;
+    height: 20px;
+}
+
+.ant-tree-node-content-wrapper{
+    display: flex;
+}
+
+.ant-tag{
+    width: 45px;
+    text-align: center;
+}

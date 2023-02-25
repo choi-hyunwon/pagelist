@@ -1,12 +1,13 @@
 import React from 'react';
 import {Form, Input, Button, Radio} from "antd";
-import {selectCategoryData} from "../app/slice";
+import {selectCategoryData, selectPageData} from "../app/slice";
 import {createPageApi, updatePageApi} from "../api/adaptor.api";
 import {useSelector} from "react-redux";
 import {format} from 'date-fns'
 
 const Page = ({subType}) => {
     const categoryData = useSelector(selectCategoryData);
+    const pageData = useSelector(selectPageData);
     const layout = {
         labelCol: {
             span: 6,
@@ -43,7 +44,9 @@ const Page = ({subType}) => {
             <Form
                 {...layout}
                 initialValues={{
-
+                    title : pageData.title,
+                    url : pageData.url,
+                    state : pageData.state
                 }}
                 onFinish={onFinish}
                 validateMessages={validateMessages}
@@ -53,14 +56,14 @@ const Page = ({subType}) => {
                     label="Title"
                     rules={[{required: true}]}
                 >
-                    <Input style={{width : '300px'}} placeholder="페이지명을 입력해주세요."/>
+                    <Input placeholder="페이지명을 입력해주세요."/>
                 </Form.Item>
                 <Form.Item
                     name={'url'}
                     label="Url"
                     rules={[{required: true}]}
                 >
-                    <Input style={{width : '300px'}} placeholder="링크명을 입력해주세요."/>
+                    <Input  placeholder="링크명을 입력해주세요."/>
                 </Form.Item>
                 <Form.Item
                     name={['state']}
@@ -68,9 +71,9 @@ const Page = ({subType}) => {
                     rules={[{required: true}]}
                 >
                     <Radio.Group>
-                        <Radio value="0">TODO</Radio>
-                        <Radio value="1">IN PROGRESS</Radio>
-                        <Radio value="2">DONE</Radio>
+                        <Radio value="0">대기중</Radio>
+                        <Radio value="1">작업중</Radio>
+                        <Radio value="2">완료</Radio>
                     </Radio.Group>
                 </Form.Item>
                 <Form.Item

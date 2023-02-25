@@ -24,18 +24,18 @@ function HeaderC() {
             }}
         >
             <div className="header-logo">
-                <Link to={"/main"}  style={{letterSpacing: '5px', color: '#fff', fontSize: '24px'}}>
+                <Link to={"/main"}  style={{letterSpacing: 5, color: '#fff', fontSize: 24}}>
                     PLVS
                 </Link>
             </div>
             {
                 isLoggedIn &&
-                <div className="header-icon" style={{marginTop : '5px'}}>
+                <div className="header-icon" style={{marginTop : 5 }}>
                     <Space>
                         <Space wrap>
                             <Button
                                 type="text"
-                                icon={<LogoutOutlined  style={{ color: '#fff', fontSize: '24px' }} />}
+                                icon={<LogoutOutlined  style={{ color: '#fff', fontSize: 24 }} />}
                                 onClick={() => signOut(auth)}
                             />
                         </Space>
