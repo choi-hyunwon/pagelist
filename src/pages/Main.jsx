@@ -1,5 +1,5 @@
 import React from "react";
-import {selectProjectList, setModal, setProjectData, selectProjectData} from "../app/slice";
+import {selectProjectList, setModal, setProjectData, selectProjectData, setCategoryList} from "../app/slice";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {Space, Card, Dropdown} from 'antd'
@@ -56,7 +56,10 @@ function Main() {
                             title={item.title}
                             extra={<Dropdown.Button menu={menuProps} />}
                             style={{width: 300}}
-                            onClick={() => {dispatch(setProjectData({title : item.title, id : item.id}))}}
+                            onClick={() => {
+                                dispatch(setCategoryList([]))
+                                dispatch(setProjectData({title : item.title, id : item.id}))}
+                            }
                         >
                             <div style={{cursor: 'pointer'}} onClick={() => {navigate(`/detail/${item.id}`)}}>
                                 <p>생성일 : {item.createdDate}</p>

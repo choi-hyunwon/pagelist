@@ -11,7 +11,6 @@ import {
     setProjectData,
     selectPageList,
     setPageData,
-    selectPageData
 } from "../app/slice";
 import {Tree, Tag, Popover, Button} from 'antd';
 import {PlusOutlined, SmallDashOutlined} from "@ant-design/icons";
@@ -25,22 +24,20 @@ const Detail = () => {
     const id = params.projectId;
     const projectList = useSelector(selectProjectList);
     const categoryList = useSelector(selectCategoryList);
-    const categoryData = useSelector(setCategoryData);
     const pageList = useSelector(selectPageList);
-    const pageData = useSelector(selectPageData);
     const isLoggedIn = useSelector(selectIsLoggedIn);
     const [treeData, setTreeData] = useState([]);
     const [url, setUrl] = useState("");
 
     const createCategory = () => {
-        categoryData.id !== "" && dispatch(setCategoryData({title : "", id : "", parentId : ""}));
+        dispatch(setCategoryData({title : "", id : "", parentId : ""}));
         dispatch(setModal({show: true, type: 'category', subType : 'create'}));
     };
     const updateCategory = () => dispatch(setModal({show: true, type: 'category', subType : 'update'}));
     const deleteCategory = () => dispatch(setModal({show: true, type: 'delete-category'}));
 
     const createPage = () => {
-        pageData.id !== "" && dispatch(setPageData({title : "", url : "", id : "", parentId : "", state: ""}))
+        dispatch(setPageData({title : "", url : "", id : "", parentId : "", state: ""}))
         dispatch(setModal({show: true, type: 'page', subType : 'create'}));
     }
     const updatePage = () => dispatch(setModal({show: true, type: 'page', subType : 'update'}));
