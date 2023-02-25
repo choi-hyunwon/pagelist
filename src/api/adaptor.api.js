@@ -1,10 +1,11 @@
 import store from "../app/store";
 import {auth, firestore} from "../firebase/Firebase";
-import {setProjectList, setModal} from "../app/slice";
+import {setProjectList, setModal, setPageList} from "../app/slice";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 
 const user = firestore.collection("user");
 const project = firestore.collection("project");
+const page = firestore.collection("page");
 
 export const createUserWithEmailAndPasswordApi = (values) => {
     const {email, password} = values.user;
@@ -37,6 +38,12 @@ export const getProjectApi = () => {
             projectList.push(docs.data())
         })
         store.dispatch(setProjectList(projectList))
+    });
+};
+
+export const getPageApi = (id) => {
+    return page.doc(id).get().then((doc) => {
+        store.dispatch(setPageList(doc.data().list))
     });
 };
 
@@ -131,3 +138,57 @@ export const deleteCategoryApi = () => {
         });
 };
 
+export const createPageApi = (values) => {
+    const post = store.getState().post;
+    const pageList = [...post.pageList];
+    pageList.push({...values});
+
+    page.doc(post.projectData.id).update({
+        list : pageList
+    })
+        .then(() => {
+            getPageApi(post.projectData.id);
+            store.dispatch(setModal({show: true, type: "create-page-success"}));
+        })
+        .catch((error) => {
+            console.error("[createPageApi] Error : ", error);
+        });
+};
+
+export const updatePageApi = (values) => {
+    const post = store.getState().post;
+    const pageList = JSON.parse(JSON.stringify(post.pageList));
+    pageList.forEach((val) => {
+        if(val.id === post.pageData.id) {
+            val.title = values.title;
+            val.updatedDate =  values.updatedDate;
+            val.url = values.url;
+            val.state = values.state;
+        }
+    });
+    page.doc(post.projectData.id).update({
+        list : pageList
+    })
+        .then(() => {
+            getPageApi(post.projectData.id);
+            store.dispatch(setModal({show: true, type: "update-page-success"}));
+        })
+        .catch((error) => {
+            console.error("[updatePageApi] Error : ", error);
+        });
+};
+
+export const deletePageApi = () => {
+    const post = store.getState().post;
+    const pageList = JSON.parse(JSON.stringify(post.pageList));
+    page.doc(post.projectData.id).update({
+        list : pageList.filter(val => val.id !== post.pageData.id)
+    })
+        .then(() => {
+            getProjectApi();
+            store.dispatch(setModal({show: true, type: "delete-page-success"}));
+        })
+        .catch((error) => {
+            console.error("[deletePageApi] Error : ", error);
+        });
+};

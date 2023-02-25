@@ -49,7 +49,7 @@ const Category = ({subType}) => {
                     label="Title"
                     rules={[{required: true}]}
                 >
-                    <Input style={{width : '300px'}} placeholder="카테고리명을 입력해주세요."/>
+                    <Input placeholder="카테고리명을 입력해주세요."/>
                 </Form.Item>
                 <Form.Item
                     name="submit"
