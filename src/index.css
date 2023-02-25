@@ -42,3 +42,7 @@ body {
     width: 45px;
     text-align: center;
 }
+
+.ant-tree.ant-tree-directory .ant-tree-treenode-selected:hover::before, .ant-tree.ant-tree-directory .ant-tree-treenode-selected::before {
+    background: lightslategray;
+}

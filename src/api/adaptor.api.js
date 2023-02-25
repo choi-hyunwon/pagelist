@@ -43,7 +43,7 @@ export const getProjectApi = () => {
 
 export const getPageApi = (id) => {
     return page.doc(id).get().then((doc) => {
-        store.dispatch(setPageList(doc.data().list))
+        doc.data()?.list !== undefined && store.dispatch(setPageList(doc.data().list))
     });
 };
 

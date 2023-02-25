@@ -77,28 +77,23 @@ const Detail = () => {
                 }
             }
         }
+        setUrl(categoryListCopy[0]?.page[0]?.url);
         let newArr = [];
         categoryListCopy.map((val, idx)=> {
             let y = {};
-            y['title'] = <div>
-                {!isLoggedIn
-                    ? (
-                        <div className="text">{val['title']}</div >
-                    )
-                    : (
-                        <div style={{display : 'flex'}} onClick={() => {dispatch(setCategoryData({title : val.title, id : val.id, parentId : val.parentId}))}}>
-                            <div className="text">{val['title']}</div>
-                            <Popover placement="right" style={{marginRight: 10}} content={categoryContent} trigger="hover">
-                                <SmallDashOutlined style={{marginLeft: 20, marginTop: 3, width: 20, height:20, border: "1px solid #d9d9d9"}}/>
-                            </Popover>
-                        </div>
-                    )
-                }
-            </div>
+            y['title'] =
+                <div style={{display : 'flex'}} onClick={() => { isLoggedIn && dispatch(setCategoryData({title : val.title, id : val.id, parentId : val.parentId}))}}>
+                    <div className="text">{val['title']}</div>
+                    {isLoggedIn &&
+                        <Popover placement="right" style={{marginRight: 10}} content={categoryContent} trigger="hover">
+                            <SmallDashOutlined style={{marginLeft: 20, marginTop: 3, width: 20, height:20, border: "1px solid #d9d9d9"}}/>
+                        </Popover>
+                    }
+                </div>
             y['key'] = idx;
             y['children'] = val.page.map((val2, idx2) => {
                 let z = {};
-                z['title'] = <div style={{display : 'flex'}} onClick={() => {dispatch(setPageData({state: val2.state, url: val2.url, title : val2.title, id : val2.id, parentId : val2.parentId}))}}>
+                z['title'] = <div style={{display : 'flex'}} onClick={() => {isLoggedIn && dispatch(setPageData({state: val2.state, url: val2.url, title : val2.title, id : val2.id, parentId : val2.parentId}))}}>
                     <div>
                         <Tag color={val2['state'] === "0" ? 'default' : val2['state'] === "2" ? 'green' : 'volcano'}>
                             {val2['state'] === "0" ? '대기중' : val2['state'] === "2" ? '완료' : '작업중'}
@@ -106,9 +101,11 @@ const Detail = () => {
                     </div>
                     <div className="text" style={{width: 73, overflow: 'hidden'}}>{val2['title']}</div>
                     <img style={{marginRight: 10, marginTop: 7, width: 10, height: 10}} src={"https://cdn-icons-png.flaticon.com/128/2089/2089708.png"} alt=""/>
-                    <Popover placement="right" content={pageContent} trigger="hover">
-                        <SmallDashOutlined style={{marginTop: 3, float : 'right', width: 20, height:20, border: "1px solid #d9d9d9"}}/>
-                    </Popover>
+                    {isLoggedIn &&
+                        <Popover placement="right" content={pageContent} trigger="hover">
+                            <SmallDashOutlined style={{marginTop: 3, float : 'right', width: 20, height:20, border: "1px solid #d9d9d9"}}/>
+                        </Popover>
+                    }
                 </div>
                 z['key'] = `${idx}-${idx2}`;
                 z['isLeaf'] = true;
@@ -122,9 +119,10 @@ const Detail = () => {
 
     const onSelect = (keys, info) => {
         if(info.nativeEvent.target.tagName === "IMG"){
-            window.open(info.node.url, "_blank")
+            window.open(info.node.url, "_blank");
+            setUrl(info.node.url);
         }else{
-            info.node.url !== undefined && setUrl(info.node.url)
+            info.node.url !== undefined && setUrl(info.node.url);
         }
     };
 
