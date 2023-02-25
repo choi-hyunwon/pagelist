@@ -24,7 +24,7 @@ function HeaderC() {
             }}
         >
             <div className="header-logo">
-                <Link to={"/main"}  style={{letterSpacing: 5, color: '#fff', fontSize: 24}}>
+                <Link to={"/main"}  style={{letterSpacing: 5, color: '#fff', fontSize: 30}}>
                     PLVS
                 </Link>
             </div>

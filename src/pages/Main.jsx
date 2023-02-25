@@ -47,7 +47,7 @@ function Main() {
             {
                 <Space style={{marginTop:  20, flexWrap: 'wrap'}} size={16}>
                     <div onClick={createProject} style={uploadStyle} className={"upload_btn"}>
-                        <PlusOutlined style={{marginTop:  '20%', marginBottom : 10}}/>
+                        <PlusOutlined style={{margin: '20% 0 10px 0'}}/>
                         <div>프로젝트 생성</div>
                     </div>
                     {projectList.map((item, index) => (
