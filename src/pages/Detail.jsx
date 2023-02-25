@@ -10,7 +10,8 @@ import {
     setCategoryData,
     setProjectData,
     selectPageList,
-    setPageData
+    setPageData,
+    selectPageData
 } from "../app/slice";
 import {Tree, Tag, Popover, Button} from 'antd';
 import {PlusOutlined, SmallDashOutlined} from "@ant-design/icons";
@@ -26,6 +27,7 @@ const Detail = () => {
     const categoryList = useSelector(selectCategoryList);
     const categoryData = useSelector(setCategoryData);
     const pageList = useSelector(selectPageList);
+    const pageData = useSelector(selectPageData);
     const isLoggedIn = useSelector(selectIsLoggedIn);
     const [treeData, setTreeData] = useState([]);
     const [url, setUrl] = useState("");
@@ -37,13 +39,16 @@ const Detail = () => {
     const updateCategory = () => dispatch(setModal({show: true, type: 'category', subType : 'update'}));
     const deleteCategory = () => dispatch(setModal({show: true, type: 'delete-category'}));
 
-    const createPage = () => dispatch(setModal({show: true, type: 'page', subType : 'create'}));
+    const createPage = () => {
+        pageData.id !== "" && dispatch(setPageData({title : "", url : "", id : "", parentId : "", state: ""}))
+        dispatch(setModal({show: true, type: 'page', subType : 'create'}));
+    }
     const updatePage = () => dispatch(setModal({show: true, type: 'page', subType : 'update'}));
     const deletePage = () => dispatch(setModal({show: true, type: 'delete-page'}));
 
     const categoryContent = (
         <div style={{cursor : 'pointer'}}>
-            <p onClick={createPage}>하위 카테고리 생성</p>
+            <p onClick={createPage}>페이지 생성</p>
             <p onClick={updateCategory}>수정</p>
             <p onClick={deleteCategory}>삭제</p>
         </div>
