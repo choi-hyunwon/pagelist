@@ -30,6 +30,8 @@ const Detail = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
     const [treeData, setTreeData] = useState([]);
     const [isMobile, setIsMobile] = useState(false);
+    const [isShowAll, setIsShowAll] = useState(false);
+    const [expandedKeys, setExpandedKeys] = useState([]);
     const [url, setUrl] = useState("");
 
     const createCategory = () => {
@@ -121,6 +123,7 @@ const Detail = () => {
     }, [pageList, categoryList]);
 
     const onSelect = (keys, info) => {
+        setExpandedKeys(keys);
         if(info.nativeEvent.target.tagName === "IMG"){
             window.open(info.node.url, "_blank");
             setUrl(info.node.url);
@@ -137,13 +140,36 @@ const Detail = () => {
         return isMobile ? '375px' : '85%'
     }
 
+    const onExpandAll = () => {
+        if(isShowAll){
+            setExpandedKeys([]);
+            setIsShowAll(false);
+        }else{
+            const expandedKeys = [];
+            const expandMethod = arr => {
+                arr.forEach(data => {
+                    expandedKeys.push(data.key);
+                    if (data.children) {
+                        expandMethod(data.children);
+                    }
+                });
+            };
+            expandMethod(treeData);
+            setExpandedKeys(expandedKeys);
+            setIsShowAll(true);
+        }
+    };
+
     return (
         <div style={{display : 'flex'}}>
             <div style={{width: 300}}>
                 <h3 style={{margin: '5px 0px -7px 5px'}}>{projectData.title}</h3>
                 {treeData.length > 0 &&
                     <>
-                        <Checkbox style={{margin: '-5px 0 0 60%'}} onChange={onChange}>모바일 보기</Checkbox>
+                        <div style={{margin: '20px 0 15px 5px', display : 'flex'}}>
+                            <Checkbox onChange={onExpandAll}>모두 열기</Checkbox>
+                            <Checkbox onChange={onChange}>모바일 보기</Checkbox>
+                        </div>
                         <DirectoryTree
                             multiple
                             placement="top"
@@ -152,6 +178,7 @@ const Detail = () => {
                             treeData={treeData}
                             defaultSelectedKeys={['0-0']}
                             style={{fontSize : 16, marginTop : 5}}
+                            expandedKeys={expandedKeys}
                         />
                     </>
                 }

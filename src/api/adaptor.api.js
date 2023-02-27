@@ -126,6 +126,12 @@ export const updateCategoryApi = (values) => {
 export const deleteCategoryApi = () => {
     const post = store.getState().post;
     const categoryList = JSON.parse(JSON.stringify(post.categoryList));
+    const pageList = JSON.parse(JSON.stringify(post.pageList));
+
+    page.doc(post.categoryData.parentId).update({
+        list : pageList.filter(val => val.parentId !== post.categoryData.id)
+    });
+
     project.doc(post.categoryData.parentId).update({
         category : categoryList.filter(val => val.id !== post.categoryData.id)
     })
