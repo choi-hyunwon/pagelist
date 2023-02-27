@@ -58,21 +58,6 @@ const Join = () => {
             validateMessages={validateMessages}
         >
             <Form.Item
-                name={['user', 'name']}
-                label="Name"
-                rules={[
-                    {
-                        required: true,
-                    },
-                    {
-                        validator: validateName,
-                        message: '이름에 숫자, 특수문자는 사용할 수 없습니다.'
-                    }
-                ]}
-            >
-                <Input placeholder="이름을 입력해주세요." prefix={<UserOutlined style={{ color: 'rgba(0, 0, 0, 0.25)' }} />}/>
-            </Form.Item>
-            <Form.Item
                 name={['user', 'email']}
                 label="Email"
                 rules={[
