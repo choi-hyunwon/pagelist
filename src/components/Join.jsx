@@ -89,7 +89,7 @@ const Join = () => {
             </Form.Item>
             <Form.Item
                 name={['user', 'password']}
-                label="Password"
+                label="PW"
                 rules={[
                     {
                         required: true,

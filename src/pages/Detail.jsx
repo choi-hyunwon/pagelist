@@ -118,7 +118,7 @@ const Detail = () => {
             newArr.push(y);
         });
         setTreeData(newArr);
-    }, [pageList]);
+    }, [pageList, categoryList]);
 
     const onSelect = (keys, info) => {
         if(info.nativeEvent.target.tagName === "IMG"){

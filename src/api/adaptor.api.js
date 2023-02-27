@@ -143,16 +143,31 @@ export const createPageApi = (values) => {
     const pageList = [...post.pageList];
     pageList.push({...values});
 
-    page.doc(post.projectData.id).update({
-        list : pageList
-    })
-        .then(() => {
-            getPageApi(post.projectData.id);
-            store.dispatch(setModal({show: true, type: "create-page-success"}));
-        })
-        .catch((error) => {
-            console.error("[createPageApi] Error : ", error);
-        });
+    page.doc(post.projectData.id).get().then((docs) => {
+        if(docs.data() === undefined){
+            page.doc(post.projectData.id).set({
+                list : pageList
+            })
+                .then(() => {
+                    getPageApi(post.projectData.id);
+                    store.dispatch(setModal({show: true, type: "create-page-success"}));
+                })
+                .catch((error) => {
+                    console.error("[createPageApi] Error : ", error);
+                });
+        }else{
+            page.doc(post.projectData.id).update({
+                list : pageList
+            })
+                .then(() => {
+                    getPageApi(post.projectData.id);
+                    store.dispatch(setModal({show: true, type: "create-page-success"}));
+                })
+                .catch((error) => {
+                    console.error("[createPageApi] Error : ", error);
+                });
+        }
+    });
 };
 
 export const updatePageApi = (values) => {
