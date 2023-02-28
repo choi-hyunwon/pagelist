@@ -32,6 +32,8 @@ const Detail = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [isShowAll, setIsShowAll] = useState(false);
     const [expandedKeys, setExpandedKeys] = useState([]);
+    const [allKeys, setAllKeys] = useState([]);
+    const [checked, setChecked] = useState(false);
     const [url, setUrl] = useState("");
 
     const createCategory = () => {
@@ -95,7 +97,7 @@ const Detail = () => {
                         </Popover>
                     }
                 </div>
-            y['key'] = idx;
+            y['key'] = idx.toString();
             y['children'] = val.page.map((val2, idx2) => {
                 let z = {};
                 z['title'] = <div style={{display : 'flex'}} onClick={() => {isLoggedIn && dispatch(setPageData({state: val2.state, url: val2.url, title : val2.title, id : val2.id, parentId : val2.parentId}))}}>
@@ -119,11 +121,27 @@ const Detail = () => {
             });
             newArr.push(y);
         });
+        const expandedKeys = [];
+        const expandMethod = arr => {
+            arr.forEach(data => {
+                expandedKeys.push(data.key);
+                if (data.children) expandMethod(data.children);
+            });
+        };
+        expandMethod(newArr);
+        setAllKeys(expandedKeys);
         setTreeData(newArr);
     }, [pageList, categoryList]);
 
     const onSelect = (keys, info) => {
-        setExpandedKeys(keys);
+        if(expandedKeys.length > 1){
+            setChecked(false);
+            setIsShowAll(false);
+            setExpandedKeys(expandedKeys.filter(val => val.split('-')[0] !== keys[0]));
+        }else{
+            if(expandedKeys[0] === keys[0]) setExpandedKeys([]);
+            else setExpandedKeys(keys);
+        }
         if(info.nativeEvent.target.tagName === "IMG"){
             window.open(info.node.url, "_blank");
             setUrl(info.node.url);
@@ -132,32 +150,11 @@ const Detail = () => {
         }
     };
 
-    const onChange = (e) => {
-        setIsMobile(e.target.checked)
-    };
-
-    const setMobileWidth = () => {
-        return isMobile ? '375px' : '85%'
-    }
-
-    const onExpandAll = () => {
-        if(isShowAll){
-            setExpandedKeys([]);
-            setIsShowAll(false);
-        }else{
-            const expandedKeys = [];
-            const expandMethod = arr => {
-                arr.forEach(data => {
-                    expandedKeys.push(data.key);
-                    if (data.children) {
-                        expandMethod(data.children);
-                    }
-                });
-            };
-            expandMethod(treeData);
-            setExpandedKeys(expandedKeys);
-            setIsShowAll(true);
-        }
+    const onExpandAll = (e) => {
+        if(isShowAll) setExpandedKeys([]);
+        else setExpandedKeys(allKeys);
+        setIsShowAll(!isShowAll);
+        setChecked(e.target.checked);
     };
 
     return (
@@ -167,8 +164,8 @@ const Detail = () => {
                 {treeData.length > 0 &&
                     <>
                         <div style={{margin: '20px 0 15px 5px', display : 'flex'}}>
-                            <Checkbox onChange={onExpandAll}>모두 열기</Checkbox>
-                            <Checkbox onChange={onChange}>모바일 보기</Checkbox>
+                            <Checkbox checked={checked} onChange={onExpandAll}>모두 열기</Checkbox>
+                            <Checkbox onChange={(e)=>setIsMobile(e.target.checked)}>모바일 보기</Checkbox>
                         </div>
                         <DirectoryTree
                             multiple
@@ -187,7 +184,7 @@ const Detail = () => {
                 )
                 }
             </div>
-            <div style={{ margin: "0 auto", width: setMobileWidth(), height: 800}}>
+            <div style={{ margin: "0 auto", width: `${isMobile ? '375px' : '85%'}`, height: 800}}>
                 <iframe src={url} height="100%" width="100%"/>
             </div>
         </div>
