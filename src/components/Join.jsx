@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { Button, Form, Input } from 'antd';
 import {checkPassword, checkName} from '../utils/utilCommon';
-import {createUserWithEmailAndPasswordApi} from "../api/adaptor.api";
+import {createUserApi} from "../api/adaptor.api";
 import {LockOutlined, MailOutlined, UserOutlined} from "@ant-design/icons";
 
 const Join = () => {
@@ -42,7 +42,7 @@ const Join = () => {
     }
 
     const register = async (values) => {
-        createUserWithEmailAndPasswordApi(values)
+        createUserApi(values.user)
     };
 
     return (

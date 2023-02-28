@@ -7,14 +7,13 @@ const user = firestore.collection("user");
 const project = firestore.collection("project");
 const page = firestore.collection("page");
 
-export const createUserWithEmailAndPasswordApi = (values) => {
-    const {email, password} = values.user;
-
-    createUserWithEmailAndPassword(auth, email, password)
+export const createUserApi = (values) => {
+    createUserWithEmailAndPassword(auth, values.email, values.password)
         .then((userCredential) => {
             const userInfo = userCredential.user;
             user.doc(userInfo.uid).set({
-                ...values.user
+                email : values.email,
+                password : values.password
             });
             store.dispatch(setModal({show: true, type: "join-success"}));
         })
