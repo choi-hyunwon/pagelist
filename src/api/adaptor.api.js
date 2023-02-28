@@ -40,8 +40,8 @@ export const getProjectApi = () => {
     });
 };
 
-export const getPageApi = (id) => {
-    return page.doc(id).get().then((doc) => {
+export const getPageApi = (values) => {
+    return page.doc(values.id).get().then((doc) => {
         doc.data()?.list !== undefined && store.dispatch(setPageList(doc.data().list))
     });
 };
