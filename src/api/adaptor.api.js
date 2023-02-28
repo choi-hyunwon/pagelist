@@ -154,7 +154,7 @@ export const createPageApi = (values) => {
                 list : pageList
             })
                 .then(() => {
-                    getPageApi(post.projectData.id);
+                    getPageApi({id : post.projectData.id});
                     store.dispatch(setModal({show: true, type: "create-page-success"}));
                 })
                 .catch((error) => {
@@ -165,7 +165,7 @@ export const createPageApi = (values) => {
                 list : pageList
             })
                 .then(() => {
-                    getPageApi(post.projectData.id);
+                    getPageApi({id : post.projectData.id});
                     store.dispatch(setModal({show: true, type: "create-page-success"}));
                 })
                 .catch((error) => {
@@ -190,7 +190,7 @@ export const updatePageApi = (values) => {
         list : pageList
     })
         .then(() => {
-            getPageApi(post.projectData.id);
+            getPageApi({id : post.projectData.id});
             store.dispatch(setModal({show: true, type: "update-page-success"}));
         })
         .catch((error) => {

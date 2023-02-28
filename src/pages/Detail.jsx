@@ -68,7 +68,7 @@ const Detail = () => {
     useEffect(()=> {
         projectList.forEach( val =>{
             if(val.id === id) {
-                getPageApi(val.id);
+                getPageApi({id :val.id});
                 dispatch(setCategoryList(val.category));
                 dispatch(setProjectData({id: val.id, title : val.title}))
             }
