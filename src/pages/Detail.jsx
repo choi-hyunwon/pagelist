@@ -135,12 +135,14 @@ const Detail = () => {
 
     const onSelect = (keys, info) => {
         if(expandedKeys.length > 1){
-            setChecked(false);
-            setIsShowAll(false);
-            setExpandedKeys(expandedKeys.filter(val => val.split('-')[0] !== keys[0]));
+            if(keys[0].split('-').length === 1){
+                setChecked(false);
+                setIsShowAll(false);
+                setExpandedKeys(expandedKeys.filter(val => val.split('-')[0] !== keys[0]));
+            }
         }else{
             if(expandedKeys[0] === keys[0]) setExpandedKeys([]);
-            else setExpandedKeys(keys);
+            else if(expandedKeys[0] !== keys[0].split('-')[0]) setExpandedKeys(keys);
         }
         if(info.nativeEvent.target.tagName === "IMG"){
             window.open(info.node.url, "_blank");

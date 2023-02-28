@@ -33,14 +33,6 @@ const Join = () => {
         }
     }
 
-    const validateName = (_, value) => {
-        if (!value || checkName(value)) {
-            return Promise.resolve();
-        } else {
-            return Promise.reject(new Error(_.message));
-        }
-    }
-
     const register = async (values) => {
         createUserApi(values.user)
     };
