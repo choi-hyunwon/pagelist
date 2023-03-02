@@ -136,9 +136,8 @@ const Detail = () => {
     const onSelect = (keys, info) => {
         if(expandedKeys.length > 1){
             if(keys[0].split('-').length === 1){
-                setChecked(false);
-                setIsShowAll(false);
-                setExpandedKeys(expandedKeys.filter(val => val.split('-')[0] !== keys[0]));
+                if(!expandedKeys.includes(keys[0])) setExpandedKeys(keys);
+                else setExpandedKeys(expandedKeys.filter(val => val.split('-')[0] !== keys[0]));
             }
         }else{
             if(expandedKeys[0] === keys[0]) setExpandedKeys([]);
@@ -163,28 +162,28 @@ const Detail = () => {
         <div style={{display : 'flex'}}>
             <div style={{width: 300}}>
                 <h3 style={{margin: '5px 0 -7px 5px'}}>{projectData.title}</h3>
+                {treeData.length > 0 &&
+                    <div style={{margin: '15px 0 0 5px', display : 'flex'}}>
+                        <div onClick={onExpandAll} style={{cursor : 'pointer', fontSize : 14, marginRight : 15}}>모두 {isShowAll ? '닫기' : '열기'}</div>
+                        <Checkbox onChange={(e)=>setIsMobile(e.target.checked)}>모바일 보기</Checkbox>
+                    </div>
+                }
                 {isLoggedIn && (
-                    <Button style={{margin : '10px 0 0 -12px'}} type="text" className="createBtn" icon={<PlusOutlined />} onClick={createCategory}>
+                    <Button style={{width : 150, margin : '15px 0 15px 5px' , border : '1px solid #d9d9d9'}} type="text" className="createBtn" icon={<PlusOutlined />} onClick={createCategory}>
                         카테고리 생성
                     </Button>
                 )}
                 {treeData.length > 0 &&
-                    <>
-                        <div style={{margin: '10px 0 15px 5px', display : 'flex'}}>
-                            <Checkbox checked={checked} onChange={onExpandAll}>모두 열기</Checkbox>
-                            <Checkbox onChange={(e)=>setIsMobile(e.target.checked)}>모바일 보기</Checkbox>
-                        </div>
-                        <DirectoryTree
-                            multiple
-                            placement="top"
-                            defaultExpandAll
-                            onSelect={onSelect}
-                            treeData={treeData}
-                            defaultSelectedKeys={['0-0']}
-                            style={{fontSize : 16, marginTop : 5, height: 680, overflowY : 'auto'}}
-                            expandedKeys={expandedKeys}
-                        />
-                    </>
+                    <DirectoryTree
+                        multiple
+                        placement="top"
+                        defaultExpandAll
+                        onSelect={onSelect}
+                        treeData={treeData}
+                        defaultSelectedKeys={['0-0']}
+                        style={{fontSize : 16, marginTop : 5, height: 680, overflowY : 'auto'}}
+                        expandedKeys={expandedKeys}
+                    />
                 }
             </div>
             <div style={{ margin: `${isMobile ? '0 auto' : '0'}`, width: `${isMobile ? '375px' : '85%'}`, height: 800}}>
