@@ -162,10 +162,15 @@ const Detail = () => {
     return (
         <div style={{display : 'flex'}}>
             <div style={{width: 300}}>
-                <h3 style={{margin: '5px 0px -7px 5px'}}>{projectData.title}</h3>
+                <h3 style={{margin: '5px 0 -7px 5px'}}>{projectData.title}</h3>
+                {isLoggedIn && (
+                    <Button style={{margin : '10px 0 0 -12px'}} type="text" className="createBtn" icon={<PlusOutlined />} onClick={createCategory}>
+                        카테고리 생성
+                    </Button>
+                )}
                 {treeData.length > 0 &&
                     <>
-                        <div style={{margin: '20px 0 15px 5px', display : 'flex'}}>
+                        <div style={{margin: '10px 0 15px 5px', display : 'flex'}}>
                             <Checkbox checked={checked} onChange={onExpandAll}>모두 열기</Checkbox>
                             <Checkbox onChange={(e)=>setIsMobile(e.target.checked)}>모바일 보기</Checkbox>
                         </div>
@@ -176,17 +181,13 @@ const Detail = () => {
                             onSelect={onSelect}
                             treeData={treeData}
                             defaultSelectedKeys={['0-0']}
-                            style={{fontSize : 16, marginTop : 5}}
+                            style={{fontSize : 16, marginTop : 5, height: 680, overflowY : 'auto'}}
                             expandedKeys={expandedKeys}
                         />
                     </>
                 }
-                {isLoggedIn && (
-                    <Button type="text" className="createBtn" icon={<PlusOutlined />} onClick={createCategory}>카테고리 생성</Button>
-                )
-                }
             </div>
-            <div style={{ margin: "0 auto", width: `${isMobile ? '375px' : '85%'}`, height: 800}}>
+            <div style={{ margin: `${isMobile ? '0 auto' : '0'}`, width: `${isMobile ? '375px' : '85%'}`, height: 800}}>
                 <iframe src={url} height="100%" width="100%"/>
             </div>
         </div>
