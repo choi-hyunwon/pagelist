@@ -1,4 +1,4 @@
-# 퍼블리싱 리스트 뷰어 시스템 (pagelist)
+## 퍼블리싱 리스트 뷰어 시스템 (pagelist)
 ***
 
 ### Project setup
@@ -6,7 +6,7 @@
 # install dependencies
 $ npm install
 ```
-
+***
 ### Compiles and hot-reloads for development
 ```
 # serve with hot reload at localhost:3000 (Develop Server)
@@ -48,7 +48,7 @@ $ npm start
 │    │   │   └── Project.jsx
 │    │   ├── Header.jsx
 │    │   └── Modal.jsx
-│    ├── firebase // 파이어베이스 연동 문서
+│    ├── firebase // 파이어베이스 연  문서
 │    │   └── Firebase.js
 │    ├── lang // 다국어 설정 파일 및 언어 리소스 파일
 │    │   ├── resources
