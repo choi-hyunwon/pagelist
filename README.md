@@ -1,5 +1,4 @@
-## 퍼블리싱 리스트 뷰어 시스템 (pagelist)
-***
+# 퍼블리싱 리스트 뷰어 시스템 (pagelist)
 
 ### Project setup
 ```
