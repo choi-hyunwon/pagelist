@@ -1,12 +1,14 @@
 import React from 'react';
 import {Form, Input, Button} from "antd";
-import {selectProjectData} from "../app/slice";
-import {createProjectApi, updateProjectApi} from "../api/adaptor.api";
+import {selectCategoryData, selectProjectData} from "../../app/slice";
+import {createCategoryApi, updateCategoryApi} from "../../api/adaptor.api";
 import {useSelector} from "react-redux";
 import {format} from 'date-fns'
 
-const Project = ({subType}) => {
+const Category = ({subType}) => {
     const projectData = useSelector(selectProjectData);
+    const categoryData = useSelector(selectCategoryData);
+
     const layout = {
         labelCol: {
             span: 6,
@@ -20,15 +22,15 @@ const Project = ({subType}) => {
     };
 
     const onFinish = (values) => {
-        let projectData = {
+        let categoryData = {
             title : values.title,
             updatedDate : format(new Date(), "yyyy-MM-dd HH:mm:ss"),
         }
         if(subType === "create") {
-            projectData = {...projectData, ...{id : Math.random().toString(36).substr(2, 16), createdDate : format(new Date(), "yyyy-MM-dd HH:mm:ss")}}
-            createProjectApi(projectData);
+            categoryData = {...categoryData, ...{parentId : projectData.id , id : Math.random().toString(36).substr(2, 16), createdDate : format(new Date(), "yyyy-MM-dd HH:mm:ss")}}
+            createCategoryApi(categoryData);
         } else {
-            updateProjectApi(projectData);
+            updateCategoryApi(categoryData);
         }
     };
 
@@ -37,7 +39,7 @@ const Project = ({subType}) => {
             <Form
                 {...layout}
                 initialValues={{
-                    title : projectData.title
+                    title : categoryData.title
                 }}
                 onFinish={onFinish}
                 validateMessages={validateMessages}
@@ -47,7 +49,7 @@ const Project = ({subType}) => {
                     label="Title"
                     rules={[{required: true}]}
                 >
-                    <Input style={{width : 200}} placeholder="프로젝트명을 입력해주세요."/>
+                    <Input placeholder="카테고리명을 입력해주세요."/>
                 </Form.Item>
                 <Form.Item
                     name="submit"
@@ -64,4 +66,4 @@ const Project = ({subType}) => {
         </>
     )
 };
-export default Project;
+export default Category;

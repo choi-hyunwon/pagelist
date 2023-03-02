@@ -1,7 +1,7 @@
 import React from 'react';
 import {Form, Input, Button, Radio} from "antd";
-import {selectCategoryData, selectPageData} from "../app/slice";
-import {createPageApi, updatePageApi} from "../api/adaptor.api";
+import {selectCategoryData, selectPageData} from "../../app/slice";
+import {createPageApi, updatePageApi} from "../../api/adaptor.api";
 import {useSelector} from "react-redux";
 import {format} from 'date-fns'
 

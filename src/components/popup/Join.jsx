@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import { Button, Form, Input } from 'antd';
-import {checkPassword, checkName} from '../utils/utilCommon';
-import {createUserApi} from "../api/adaptor.api";
-import {LockOutlined, MailOutlined, UserOutlined} from "@ant-design/icons";
+import {checkPassword} from '../../utils/utilCommon';
+import {createUserApi} from "../../api/adaptor.api";
+import {LockOutlined, MailOutlined} from "@ant-design/icons";
 
 const Join = () => {
     const layout = {

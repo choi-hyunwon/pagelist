@@ -1,90 +1,73 @@
-# Welcome to GitHub
+# 퍼블리싱 리스트 뷰어 시스템 (pagelist)
+***
 
-Welcome to GitHub—where millions of developers work together on software. Ready to get started? Let’s learn how this all works by building and publishing your first GitHub Pages website!
-
-## Repositories
-
-Right now, we’re in your first GitHub **repository**. A repository is like a folder or storage space for your project. Your project's repository contains all its files such as code, documentation, images, and more. It also tracks every change that you—or your collaborators—make to each file, so you can always go back to previous versions of your project if you make any mistakes.
-
-This repository contains three important files: The HTML code for your first website on GitHub, the CSS stylesheet that decorates your website with colors and fonts, and the **README** file. It also contains an image folder, with one image file.
-
-## Describe your project
-
-You are currently viewing your project's **README** file. **_README_** files are like cover pages or elevator pitches for your project. They are written in plain text or [Markdown language](https://guides.github.com/features/mastering-markdown/), and usually include a paragraph describing the project, directions on how to use it, who authored it, and more.
-
-[Learn more about READMEs](https://help.github.com/en/articles/about-readmes)
-
-## Your first website
-
-**GitHub Pages** is a free and easy way to create a website using the code that lives in your GitHub repositories. You can use GitHub Pages to build a portfolio of your work, create a personal website, or share a fun project that you coded with the world. GitHub Pages is automatically enabled in this repository, but when you create new repositories in the future, the steps to launch a GitHub Pages website will be slightly different.
-
-[Learn more about GitHub Pages](https://pages.github.com/)
-
-## Rename this repository to publish your site
-
-We've already set-up a GitHub Pages website for you, based on your personal username. This repository is called `hello-world`, but you'll rename it to: `username.github.io`, to match your website's URL address. If the first part of the repository doesn’t exactly match your username, it won’t work, so make sure to get it right.
-
-Let's get started! To update this repository’s name, click the `Settings` tab on this page. This will take you to your repository’s settings page. 
-
-![repo-settings-image](https://user-images.githubusercontent.com/18093541/63130482-99e6ad80-bf88-11e9-99a1-d3cf1660b47e.png)
-
-Under the **Repository Name** heading, type: `username.github.io`, where username is your username on GitHub. Then click **Rename**—and that’s it. When you’re done, click your repository name or browser’s back button to return to this page.
-
-<img width="1039" alt="rename_screenshot" src="https://user-images.githubusercontent.com/18093541/63129466-956cc580-bf85-11e9-92d8-b028dd483fa5.png">
-
-Once you click **Rename**, your website will automatically be published at: https://your-username.github.io/. The HTML file—called `index.html`—is rendered as the home page and you'll be making changes to this file in the next step.
-
-Congratulations! You just launched your first GitHub Pages website. It's now live to share with the entire world
-
-## Making your first edit
-
-When you make any change to any file in your project, you’re making a **commit**. If you fix a typo, update a filename, or edit your code, you can add it to GitHub as a commit. Your commits represent your project’s entire history—and they’re all saved in your project’s repository.
-
-With each commit, you have the opportunity to write a **commit message**, a short, meaningful comment describing the change you’re making to a file. So you always know exactly what changed, no matter when you return to a commit.
-
-## Practice: Customize your first GitHub website by writing HTML code
-
-Want to edit the site you just published? Let’s practice commits by introducing yourself in your `index.html` file. Don’t worry about getting it right the first time—you can always build on your introduction later.
-
-Let’s start with this template:
-
+### Project setup
 ```
-<p>Hello World! I’m [username]. This is my website!</p>
+# install dependencies
+$ npm install
 ```
 
-To add your introduction, copy our template and click the edit pencil icon at the top right hand corner of the `index.html` file.
-
-<img width="997" alt="edit-this-file" src="https://user-images.githubusercontent.com/18093541/63131820-0794d880-bf8d-11e9-8b3d-c096355e9389.png">
-
-
-Delete this placeholder line:
-
+### Compiles and hot-reloads for development
 ```
-<p>Welcome to your first GitHub Pages website!</p>
+# serve with hot reload at localhost:3000 (Develop Server)
+$ npm start
 ```
 
-Then, paste the template to line 15 and fill in the blanks.
+### Purpose of production
+퍼블리싱 하여 제작 된 페이지를 JAVA 개발자 및 기획자에게 미리 볼 수 있는 페이지를 제공
 
-<img width="1032" alt="edit-githuboctocat-index" src="https://user-images.githubusercontent.com/18093541/63132339-c3a2d300-bf8e-11e9-8222-59c2702f6c42.png">
+***
 
+### Production content
 
-When you’re done, scroll down to the `Commit changes` section near the bottom of the edit page. Add a short message explaining your change, like "Add my introduction", then click `Commit changes`.
+관리자 : 로그 인 후 프로젝트/카테고리/페이지 관리 (CRUD) 기능 제공
 
+사용자 : 카테고리/페이지 뷰어 기능 제공
 
-<img width="1030" alt="add-my-username" src="https://user-images.githubusercontent.com/18093541/63131801-efbd5480-bf8c-11e9-9806-89273f027d16.png">
+***
 
-Once you click `Commit changes`, your changes will automatically be published on your GitHub Pages website. Refresh the page to see your new changes live in action.
+### Directory structure
+```bash
+┌── .github // github Actions 연동 파일
+├── node_modules // CRA를 구성하는 모든 패키지 소스 코드가 존재하는 폴더
+├── public // 가상 DOM을 위한 html 파일로 index.html을 포함
+├── src // React의 시작 index.js을 포함
+│    ├── api // Cloud Firestore 연동 함수 
+│    │   └── adaptor.api.js
+│    ├── app // 라우터 리스트 및 store를 구성하는 모든 slice와 reducer를 정의
+│    │   ├── router.js
+│    │   ├── slice.js
+│    │   └── store.js 
+│    ├── assets // 프로젝트에서 사용할 이미지, 비디오, json, css 파일 등 미디어 파일들을 모아두어 저장하는 곳.
+│    │   └── css
+│    ├── componenets // pages에서 사용 할 컴포넌트 모음
+│    │   ├── popup
+│    │   │   ├── Category.jsx
+│    │   │   ├── Join.jsx
+│    │   │   ├── Page.jsx
+│    │   │   └── Project.jsx
+│    │   ├── Header.jsx
+│    │   └── Modal.jsx
+│    ├── firebase // 파이어베이스 연동 문서
+│    │   └── Firebase.js
+│    ├── lang // 다국어 설정 파일 및 언어 리소스 파일
+│    │   ├── resources
+│    │   │   ├── translation.en.json
+│    │   │   └── translation.ko.json
+│    │   └── i18n.js
+│    ├── pages // 화면 단위의 라우팅 컴포넌트 모음
+│    │   ├── Detail.jsx
+│    │   ├── Login.jsx
+│    │   └── Main.jsx
+│    ├── utils // 유틸 함수 모음, birth regex check 등의 함수들 모음
+│    │   └── utilCommon.js
+│    ├── App.js // 컴포넌트를 정의하는 프로그램이다. 실제로 화면에 표시되는 내용 등은 여기에서 정의된다.
+│    ├── index.css
+│    └── index.js // 메인 프로그램이라고 할 수 있다. HTML 템플릿 및 JavaScript의 컴포넌트를 조합하여 렌더링하고 실제 표시
+├── .gitignore // github에 올리고 싶지 않은 폴더와 파일 모음
+├── package.json // CRA 기본 패키지 외 추가로 설치된 라이브러리/패키지 정보(종류, 버전)가 기록되는 파일
+├── package-lock.json // 프로그래머가 관리할 필요가 없고 npm이나 yarn이 알아서 관리해 주는 파일 모음
+├── README.md
+└── webpack.config.js 
+```
 
-:tada: You just made your first commit! :tada:
-
-## Extra Credit: Keep on building!
-
-Change the placeholder Octocat gif on your GitHub Pages website by [creating your own personal Octocat emoji](https://myoctocat.com/build-your-octocat/) or [choose a different Octocat gif from our logo library here](https://octodex.github.com/). Add that image to line 12 of your `index.html` file, in place of the `<img src=` link.
-
-Want to add even more code and fun styles to your GitHub Pages website? [Follow these instructions](https://github.com/github/personal-website) to build a fully-fledged static website.
-
-![octocat](./images/create-octocat.png)
-
-## Everything you need to know about GitHub
-
-Getting started is the hardest part. If there’s anything you’d like to know as you get started with GitHub, try searching [GitHub Help](https://help.github.com). Our documentation has tutorials on everything from changing your repository settings to configuring GitHub from your command line.

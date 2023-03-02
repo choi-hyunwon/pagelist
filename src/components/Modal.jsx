@@ -2,11 +2,11 @@ import React from 'react';
 import {Modal, Button} from "antd";
 import {setModal, selectModal} from "../app/slice";
 import {useDispatch, useSelector} from "react-redux";
-import Join from "./Join";
-import Project from "./Project";
+import Join from "./popup/Join";
+import Project from "./popup/Project";
 import {deleteProjectApi, deleteCategoryApi, deletePageApi} from "../api/adaptor.api";
-import Category from "./Category";
-import Page from "./Page";
+import Category from "./popup/Category";
+import Page from "./popup/Page";
 
 const Default = () => {
     const dispatch = useDispatch();

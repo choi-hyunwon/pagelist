@@ -6,8 +6,3 @@ export const checkPassword = password => {
     if (/[~!@#$%\^&*()_+`\-={}|[\]\\:";'<>?,./]/gi.test(password)) char_type = char_type + 1;
     return char_type > 2 && password.length > 9;
 };
-
-export const checkName = name => {
-    const regId = /^[ㄱ-ㅎ|가-힣|a-z|A-Z]+$/;
-    return regId.test(name);
-};
