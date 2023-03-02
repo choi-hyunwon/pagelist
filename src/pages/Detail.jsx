@@ -177,7 +177,6 @@ const Detail = () => {
                     <DirectoryTree
                         multiple
                         placement="top"
-                        defaultExpandAll
                         onSelect={onSelect}
                         treeData={treeData}
                         defaultSelectedKeys={['0-0']}
