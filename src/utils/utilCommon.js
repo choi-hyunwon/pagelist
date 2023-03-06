@@ -6,3 +6,8 @@ export const checkPassword = password => {
     if (/[~!@#$%\^&*()_+`\-={}|[\]\\:";'<>?,./]/gi.test(password)) char_type = char_type + 1;
     return char_type > 2 && password.length > 9;
 };
+
+export const checkUrl = url => {
+    const regUrl =  /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+    return regUrl.test(url);
+};
