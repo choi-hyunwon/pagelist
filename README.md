@@ -1,33 +1,41 @@
-# 퍼블리싱 리스트 뷰어 시스템 (pagelist)
-<!-- PROJECT LOGO -->
+# PAGELIST
+
+<!-- PROJECT -->
 <br />
 <div align="center">
-<h3 align="center">Publishing List Viewer System</h3>
+<h3>Publishing List Viewer System</h3>
 
-  <p align="center">
-    <a href="http://pagelist-domfam.s3-website.ap-northeast-2.amazonaws.com/detail/lcoc3pgz7ic">View Demo</a>
-    ·
-    <a href="http://pagelist-domfam.s3-website.ap-northeast-2.amazonaws.com">View Demo (Admin)</a>
-    ·
-    <a href="https://github.com/choi-hyunwon/pagelist/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/choi-hyunwon/pagelist/issues">Request Feature</a>
-  </p>
+  <ul style="list-style: none">
+      <li>
+         <a href="http://pagelist-domfam.s3-website.ap-northeast-2.amazonaws.com/detail/lcoc3pgz7ic">User - View Demo</a>
+      </li>
+      <li>
+         <a href="http://pagelist-domfam.s3-website.ap-northeast-2.amazonaws.com">Admin - View Demo</a>
+      </li>
+      <li>
+         <a href="https://docs.google.com/spreadsheets/d/1jvHRd4YMYSAPiGti8lbX9Q51749pPijATF2IPUXHVVk/edit#gid=1153770286">API function guide</a>
+      </li>
+      <li>
+         <a href="https://github.com/choi-hyunwon/pagelist/issues">Report Bug</a>
+      </li>
+      <li>
+         <a href="https://github.com/choi-hyunwon/pagelist/issues">Request Feature</a>
+      </li>
+  </ul>
 </div>
-
+<br />
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-퍼블리싱 하여 제작 된 페이지를 JAVA 개발자 및 기획자에게 미리 볼 수 있는 페이지를 제공
+퍼블리싱 하여 제작 된 페이지를 JAVA 개발자 및 기획자에게 미리 볼 수 있는 페이지를 제공합니다.
 
 * 관리자 : 로그 인 후 프로젝트/카테고리/페이지 관리 (CRUD) 기능 제공
 * 사용자 : 카테고리/페이지 뷰어 기능 제공
 
+<br />
 
-### Built With
+## Built With
 
 프로젝트의 주요 프레임워크/라이브러리 입니다.
 
@@ -38,10 +46,12 @@
 * ![Firebase Badge](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=000&style=flat-square)
 * ![i18next Badge](https://img.shields.io/badge/i18next-26A69A?logo=i18next&logoColor=fff&style=flat-square)
 
+<br />
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
-이것은 프로젝트를 로컬로 설정하는 방법에 대한 지침을 제공하는 방법의 예입니다. 로컬 복사본을 시작하고 실행하려면 다음 간단한 예제 단계를 따르십시오.
+프로젝트를 로컬로 설정하는 방법입니다. 로컬 복사본을 시작하고 실행하려면 아래 단계를 따르세요.
 
 1. Clone the repo
    ```sh
@@ -55,7 +65,9 @@
    ```sh
    npm start
    ```
-   
+
+<br />
+
 <!-- DIRECTORY STRUCTURE -->
 ## Directory structure
 
