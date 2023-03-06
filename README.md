@@ -2,10 +2,9 @@
 
 <!-- PROJECT -->
 <br />
-<div align="center">
+<div>
 <h3>Publishing List Viewer System</h3>
-
-  <ul style="list-style: none">
+  <ul>
       <li>
          <a href="http://pagelist-domfam.s3-website.ap-northeast-2.amazonaws.com/detail/lcoc3pgz7ic">User - View Demo</a>
       </li>
