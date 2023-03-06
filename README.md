@@ -81,7 +81,7 @@
 │    │   ├── router.js
 │    │   ├── slice.js
 │    │   └── store.js 
-│    ├── assets // 프로젝트에서 사용할 이미지, 비디오, json, css 파일 등 미디어 파일들을 모아두어 저장하는 곳.
+│    ├── assets // 프로젝트에서 사용할 이미지, 비디오, json, css 파일 등 미디어 파일들을 모아두어 저장하는 곳
 │    │   └── css
 │    ├── componenets // pages에서 사용 할 컴포넌트 모음
 │    │   ├── popup
@@ -104,9 +104,9 @@
 │    │   └── Main.jsx
 │    ├── utils // 유틸 함수 모음, birth regex check 등의 함수들 모음
 │    │   └── utilCommon.js
-│    ├── App.js // 컴포넌트를 정의하는 프로그램이다. 실제로 화면에 표시되는 내용 등은 여기에서 정의된다.
+│    ├── App.js // 컴포넌트를 정의하는 프로그램으로 실제로 화면에 표시되는 내용 등은 여기에서 정의
 │    ├── index.css
-│    └── index.js // 메인 프로그램이라고 할 수 있다. HTML 템플릿 및 JavaScript의 컴포넌트를 조합하여 렌더링하고 실제 표시
+│    └── index.js //HTML 템플릿 및 JavaScript의 컴포넌트를 조합하여 렌더링하고 실제 표시
 ├── .gitignore // github에 올리고 싶지 않은 폴더와 파일 모음
 ├── package.json // CRA 기본 패키지 외 추가로 설치된 라이브러리/패키지 정보(종류, 버전)가 기록되는 파일
 ├── package-lock.json // 프로그래머가 관리할 필요가 없고 npm이나 yarn이 알아서 관리해 주는 파일 모음
