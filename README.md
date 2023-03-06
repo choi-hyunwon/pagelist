@@ -1,32 +1,64 @@
 # 퍼블리싱 리스트 뷰어 시스템 (pagelist)
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+<h3 align="center">Publishing List Viewer System</h3>
 
-### Project setup
-```
-# install dependencies
-$ npm install
-```
-***
-### Compiles and hot-reloads for development
-```
-# serve with hot reload at localhost:3000 (Develop Server)
-$ npm start
-```
-***
+  <p align="center">
+    <a href="http://pagelist-domfam.s3-website.ap-northeast-2.amazonaws.com/detail/lcoc3pgz7ic">View Demo</a>
+    ·
+    <a href="http://pagelist-domfam.s3-website.ap-northeast-2.amazonaws.com">View Demo (Admin)</a>
+    ·
+    <a href="https://github.com/choi-hyunwon/pagelist/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/choi-hyunwon/pagelist/issues">Request Feature</a>
+  </p>
+</div>
 
-### Purpose of production
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
 퍼블리싱 하여 제작 된 페이지를 JAVA 개발자 및 기획자에게 미리 볼 수 있는 페이지를 제공
 
-***
+* 관리자 : 로그 인 후 프로젝트/카테고리/페이지 관리 (CRUD) 기능 제공
+* 사용자 : 카테고리/페이지 뷰어 기능 제공
 
-### Production content
 
-관리자 : 로그 인 후 프로젝트/카테고리/페이지 관리 (CRUD) 기능 제공
+### Built With
 
-사용자 : 카테고리/페이지 뷰어 기능 제공
+프로젝트의 주요 프레임워크/라이브러리 입니다.
 
-***
+* ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat-square)
+* ![React Router Badge](https://img.shields.io/badge/React%20Router-CA4245?logo=reactrouter&logoColor=fff&style=flat-square)
+* ![Redux Badge](https://img.shields.io/badge/Redux-764ABC?logo=redux&logoColor=fff&style=flat-square)
+* ![Ant Design Badge](https://img.shields.io/badge/Ant%20Design-0170FE?logo=antdesign&logoColor=fff&style=flat-square)
+* ![Firebase Badge](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=000&style=flat-square)
+* ![i18next Badge](https://img.shields.io/badge/i18next-26A69A?logo=i18next&logoColor=fff&style=flat-square)
 
-### Directory structure
+<!-- GETTING STARTED -->
+## Getting Started
+
+이것은 프로젝트를 로컬로 설정하는 방법에 대한 지침을 제공하는 방법의 예입니다. 로컬 복사본을 시작하고 실행하려면 다음 간단한 예제 단계를 따르십시오.
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/your_username_/Project-Name.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Serve with hot reload at localhost:3000
+   ```sh
+   npm start
+   ```
+   
+<!-- DIRECTORY STRUCTURE -->
+## Directory structure
+
 ```bash
 ┌── .github // github Actions 연동 파일
 ├── node_modules // CRA를 구성하는 모든 패키지 소스 코드가 존재하는 폴더
@@ -70,4 +102,7 @@ $ npm start
 ├── README.md
 └── webpack.config.js 
 ```
+
+
+
 
