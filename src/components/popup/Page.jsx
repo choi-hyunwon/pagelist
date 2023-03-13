@@ -21,6 +21,7 @@ const Page = ({subType}) => {
         required: '${label} is required!',
     };
 
+
     const validateUrl = (_, value) => {
         if (!value || checkUrl(value)) {
             return Promise.resolve();
