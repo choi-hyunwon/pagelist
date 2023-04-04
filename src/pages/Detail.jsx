@@ -29,8 +29,8 @@ const Detail = () => {
     const pageList = useSelector(selectPageList);
     const isLoggedIn = useSelector(selectIsLoggedIn);
     const [treeData, setTreeData] = useState([]);
-    const [isMobile, setIsMobile] = useState(false);
-    const [isShowAll, setIsShowAll] = useState(false);
+    const [isMobile, setIsMobile] = useState(true);
+    const [isShowAll, setIsShowAll] = useState(true);
     const [expandedKeys, setExpandedKeys] = useState([]);
     const [allKeys, setAllKeys] = useState([]);
     const [checked, setChecked] = useState(false);
@@ -100,19 +100,25 @@ const Detail = () => {
             y['key'] = idx.toString();
             y['children'] = val.page.map((val2, idx2) => {
                 let z = {};
-                z['title'] = <div style={{display : 'flex'}} onClick={() => {isLoggedIn && dispatch(setPageData({state: val2.state, url: val2.url, title : val2.title, id : val2.id, parentId : val2.parentId}))}}>
-                    <div>
-                        <Tag color={val2['state'] === "0" ? 'default' : val2['state'] === "2" ? 'green' : 'volcano'}>
-                            {val2['state'] === "0" ? '대기중' : val2['state'] === "2" ? '완료' : '작업중'}
-                        </Tag>
+                z['title'] = <div style={{display : 'block'}} onClick={() => {isLoggedIn && dispatch(setPageData({state: val2.state, url: val2.url, title : val2.title, id : val2.id, parentId : val2.parentId}))}}>
+                    <div style={{display : 'flex'}} >
+                        <div>
+                            <Tag color={val2['state'] === "0" ? 'default' : val2['state'] === "2" ? 'green' : 'volcano'}>
+                                {val2['state'] === "0" ? '대기중' : val2['state'] === "2" ? '완료' : '작업중'}
+                            </Tag>
+                        </div>
+                        <div>
+                            <Tag color={'default'} className={'blank'}>
+                                새창보기
+                            </Tag>
+                        </div>
+                        {isLoggedIn &&
+                            <Popover placement="right" content={pageContent} trigger="hover">
+                                <SmallDashOutlined style={{marginTop: 3, float : 'right', width: 20, height:20, border: "1px solid #d9d9d9"}}/>
+                            </Popover>
+                        }
                     </div>
-                    <div className="text" style={{width: 73, overflow: 'hidden'}}>{val2['title']}</div>
-                    <img style={{margin: '7px 10px 0 0', width: 10, height: 10}} src={"https://cdn-icons-png.flaticon.com/128/2089/2089708.png"} alt=""/>
-                    {isLoggedIn &&
-                        <Popover placement="right" content={pageContent} trigger="hover">
-                            <SmallDashOutlined style={{marginTop: 3, float : 'right', width: 20, height:20, border: "1px solid #d9d9d9"}}/>
-                        </Popover>
-                    }
+                    <div className="text" >{val2['title']}</div>
                 </div>
                 z['key'] = `${idx}-${idx2}`;
                 z['isLeaf'] = true;
@@ -143,7 +149,7 @@ const Detail = () => {
             if(expandedKeys[0] === keys[0]) setExpandedKeys([]);
             else if(expandedKeys[0] !== keys[0].split('-')[0]) setExpandedKeys(keys);
         }
-        if(info.nativeEvent.target.tagName === "IMG"){
+        if(info.nativeEvent.target.className.includes("blank") ){
             window.open(info.node.url, "_blank");
             setUrl(info.node.url);
         }else{
@@ -160,12 +166,12 @@ const Detail = () => {
 
     return (
         <div style={{display : 'flex'}}>
-            <div style={{width: 300}}>
+            <div style={{width: 350}}>
                 <h3 style={{margin: '5px 0 -7px 5px'}}>{projectData.title}</h3>
                 {treeData.length > 0 &&
                     <div style={{margin: '15px 0 0 5px', display : 'flex'}}>
-                        <div onClick={onExpandAll} style={{cursor : 'pointer', fontSize : 14, marginRight : 15}}>모두 {isShowAll ? '닫기' : '열기'}</div>
-                        <Checkbox onChange={(e)=>setIsMobile(e.target.checked)}>모바일 보기</Checkbox>
+                        {/*<div onClick={onExpandAll} style={{cursor : 'pointer', fontSize : 14, marginRight : 15}}>모두 {isShowAll ? '닫기' : '열기'}</div>*/}
+                        <Checkbox defaultChecked={'checked'} onChange={(e)=>setIsMobile(e.target.checked)}>모바일 보기</Checkbox>
                     </div>
                 }
                 {isLoggedIn && (
@@ -179,9 +185,9 @@ const Detail = () => {
                         placement="top"
                         onSelect={onSelect}
                         treeData={treeData}
-                        defaultSelectedKeys={['0-0']}
+                        defaultExpandAll={true}
                         style={{fontSize : 16, marginTop : 5, height: 680, overflowY : 'auto'}}
-                        expandedKeys={expandedKeys}
+                        // expandedKeys={expandedKeys}
                     />
                 }
             </div>

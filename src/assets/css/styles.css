@@ -14,11 +14,14 @@
 
 .ant-tree-title div.text {
     display: inline-block;
-    width: 150px;
+    /*width: 150px;*/
     margin-left: 8px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: bold;
 }
 
 .ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle {
@@ -42,4 +45,14 @@
 .createBtn .anticon {
     line-height: 2;
     font-weight: bold;
+}
+
+.ant-tree-switcher {
+    width: 10px;
+}
+
+.ant-tag {
+    min-width: 45px;
+    width: auto;
+    text-align: center;
 }
