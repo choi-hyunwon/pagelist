@@ -56,3 +56,7 @@
     width: auto;
     text-align: center;
 }
+
+.ant-tree {
+    background: transparent;
+}
