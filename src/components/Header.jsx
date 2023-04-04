@@ -6,14 +6,14 @@ import {
 } from '@ant-design/icons';
 import {auth} from "../firebase/Firebase"
 import {signOut} from "firebase/auth";
-import {selectIsLoggedIn} from "../app/slice";
+import {selectIsLoggedIn, selectProjectData} from "../app/slice";
 import {useSelector} from "react-redux";
 
 const { Header} = Layout;
 
 function HeaderC() {
     const isLoggedIn = useSelector(selectIsLoggedIn);
-
+    const projectData = useSelector(selectProjectData);
     return (
         <Header
             style={{
@@ -24,8 +24,8 @@ function HeaderC() {
             }}
         >
             <div className="header-logo">
-                <Link to={"/main"}  style={{letterSpacing: 5, color: '#fff', fontSize: 30}}>
-                    PLVS
+                <Link to={"/main"}  style={{letterSpacing: 1, color: '#fff', fontSize: 30}}>
+                    {projectData.title}
                 </Link>
             </div>
             {

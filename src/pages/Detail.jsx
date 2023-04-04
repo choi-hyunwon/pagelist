@@ -167,7 +167,7 @@ const Detail = () => {
     return (
         <div style={{display : 'flex'}}>
             <div style={{width: 350}}>
-                <h3 style={{margin: '5px 0 -7px 5px'}}>{projectData.title}</h3>
+                {/*<h3 style={{margin: '5px 0 -7px 5px'}}>{projectData.title}</h3>*/}
                 {treeData.length > 0 &&
                     <div style={{margin: '15px 0 0 5px', display : 'flex'}}>
                         {/*<div onClick={onExpandAll} style={{cursor : 'pointer', fontSize : 14, marginRight : 15}}>모두 {isShowAll ? '닫기' : '열기'}</div>*/}
