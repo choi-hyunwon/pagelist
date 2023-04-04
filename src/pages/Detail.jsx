@@ -166,7 +166,7 @@ const Detail = () => {
 
     return (
         <div style={{display : 'flex'}}>
-            <div style={{width: 350}}>
+            <div style={{width: 350, backgroundColor:"#f4f4f4"}}>
                 {/*<h3 style={{margin: '5px 0 -7px 5px'}}>{projectData.title}</h3>*/}
                 {treeData.length > 0 &&
                     <div style={{margin: '15px 0 0 5px', display : 'flex'}}>
