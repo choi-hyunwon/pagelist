@@ -134,8 +134,10 @@ const Detail = () => {
                 if (data.children) expandMethod(data.children);
             });
         };
+        newArr= newArr.reverse()
         expandMethod(newArr);
         setAllKeys(expandedKeys);
+        console.log(newArr)
         setTreeData(newArr);
     }, [pageList, categoryList]);
 
@@ -166,7 +168,7 @@ const Detail = () => {
 
     return (
         <div style={{display : 'flex'}}>
-            <div style={{width: 350, backgroundColor:"#f4f4f4"}}>
+            <div style={{width: 380, backgroundColor:"#f4f4f4"}}>
                 {/*<h3 style={{margin: '5px 0 -7px 5px'}}>{projectData.title}</h3>*/}
                 {treeData.length > 0 &&
                     <div style={{margin: '15px 0 0 5px', display : 'flex'}}>
@@ -185,9 +187,9 @@ const Detail = () => {
                         placement="top"
                         onSelect={onSelect}
                         treeData={treeData}
-                        defaultExpandAll={true}
+                        // defaultExpandAll={true}
                         style={{fontSize : 16, marginTop : 5, height: 680, overflowY : 'auto'}}
-                        // expandedKeys={expandedKeys}
+                        expandedKeys={expandedKeys}
                     />
                 }
             </div>
