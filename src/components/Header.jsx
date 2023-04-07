@@ -1,6 +1,6 @@
 import React from 'react';
 import {Layout, Space, Button} from "antd";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {
     LogoutOutlined
 } from '@ant-design/icons';
@@ -12,8 +12,10 @@ import {useSelector} from "react-redux";
 const { Header} = Layout;
 
 function HeaderC() {
+    const location = useLocation();
     const isLoggedIn = useSelector(selectIsLoggedIn);
     const projectData = useSelector(selectProjectData);
+    const showTitle = !["/main"].includes(location.pathname)
     return (
         <Header
             style={{
@@ -25,7 +27,7 @@ function HeaderC() {
         >
             <div className="header-logo">
                 <Link to={"/main"}  style={{letterSpacing: 1, color: '#fff', fontSize: 30}}>
-                    {projectData.title}
+                    {showTitle ? projectData.title : ''}
                 </Link>
             </div>
             {

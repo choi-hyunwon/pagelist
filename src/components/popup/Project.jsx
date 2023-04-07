@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Input, Button} from "antd";
+import {Form, Input, Button, Radio} from "antd";
 import {selectProjectData} from "../../app/slice";
 import {createProjectApi, updateProjectApi} from "../../api/adaptor.api";
 import {useSelector} from "react-redux";
@@ -23,6 +23,7 @@ const Project = ({subType}) => {
         let projectData = {
             title : values.title,
             updatedDate : format(new Date(), "yyyy-MM-dd HH:mm:ss"),
+            type : values.type
         }
         if(subType === "create") {
             projectData = {...projectData, ...{id : Math.random().toString(36).substr(2, 16), createdDate : format(new Date(), "yyyy-MM-dd HH:mm:ss")}}
@@ -37,7 +38,8 @@ const Project = ({subType}) => {
             <Form
                 {...layout}
                 initialValues={{
-                    title : projectData.title
+                    title : projectData.title,
+                    type : projectData.type
                 }}
                 onFinish={onFinish}
                 validateMessages={validateMessages}
@@ -48,6 +50,16 @@ const Project = ({subType}) => {
                     rules={[{required: true}]}
                 >
                     <Input style={{width : 200}} placeholder="프로젝트명을 입력해주세요."/>
+                </Form.Item>
+                <Form.Item
+                    name={['type']}
+                    label="Type"
+                    rules={[{required: true}]}
+                >
+                    <Radio.Group>
+                        <Radio value="pc">PC</Radio>
+                        <Radio value="mobile">MOBILE</Radio>
+                    </Radio.Group>
                 </Form.Item>
                 <Form.Item
                     name="submit"

@@ -68,9 +68,10 @@ const Detail = () => {
     useEffect(()=> {
         projectList.forEach( val =>{
             if(val.id === id) {
+                setIsMobile(val.type !== 'pc');
                 getPageApi({id :val.id});
                 dispatch(setCategoryList(val.category));
-                dispatch(setProjectData({id: val.id, title : val.title}))
+                dispatch(setProjectData({id: val.id, title : val.title, type : val.type}))
             }
         })
     },[projectList]);
@@ -173,7 +174,7 @@ const Detail = () => {
                 {treeData.length > 0 &&
                     <div style={{margin: '15px 0 0 5px', display : 'flex'}}>
                         {/*<div onClick={onExpandAll} style={{cursor : 'pointer', fontSize : 14, marginRight : 15}}>모두 {isShowAll ? '닫기' : '열기'}</div>*/}
-                        <Checkbox defaultChecked={'checked'} onChange={(e)=>setIsMobile(e.target.checked)}>모바일 보기</Checkbox>
+                        <Checkbox checked={isMobile} onChange={(e)=>setIsMobile(e.target.checked)}>모바일 보기</Checkbox>
                     </div>
                 }
                 {isLoggedIn && (
