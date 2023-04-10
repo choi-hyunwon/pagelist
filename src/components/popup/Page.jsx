@@ -1,12 +1,14 @@
 import React from 'react';
 import {Form, Input, Button, Radio} from "antd";
-import {selectCategoryData, selectPageData} from "../../app/slice";
+import {selectCategoryData, selectPageData, selectProjectData} from "../../app/slice";
 import {checkUrl} from "../../utils/utilCommon";
 import {createPageApi, updatePageApi} from "../../api/adaptor.api";
 import {useSelector} from "react-redux";
 import {format} from 'date-fns'
+import TextArea from "antd/es/input/TextArea";
 
 const Page = ({subType}) => {
+    const projectData = useSelector(selectProjectData);
     const categoryData = useSelector(selectCategoryData);
     const pageData = useSelector(selectPageData);
     const layout = {
@@ -54,8 +56,8 @@ const Page = ({subType}) => {
                 {...layout}
                 initialValues={{
                     title : pageData.title,
-                    url : pageData.url,
-                    state : pageData.state
+                    url : pageData.url || projectData.defaultUrl,
+                    state : pageData.state || "0"
                 }}
                 onFinish={onFinish}
                 validateMessages={validateMessages}
@@ -80,7 +82,7 @@ const Page = ({subType}) => {
                         }
                     ]}
                 >
-                    <Input  placeholder="링크명을 입력해주세요."/>
+                    <TextArea  placeholder="링크명을 입력해주세요."/>
                 </Form.Item>
                 <Form.Item
                     name={['state']}

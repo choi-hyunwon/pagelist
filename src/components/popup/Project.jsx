@@ -4,6 +4,7 @@ import {selectProjectData} from "../../app/slice";
 import {createProjectApi, updateProjectApi} from "../../api/adaptor.api";
 import {useSelector} from "react-redux";
 import {format} from 'date-fns'
+import TextArea from "antd/es/input/TextArea";
 
 const Project = ({subType}) => {
     const projectData = useSelector(selectProjectData);
@@ -23,7 +24,8 @@ const Project = ({subType}) => {
         let projectData = {
             title : values.title,
             updatedDate : format(new Date(), "yyyy-MM-dd HH:mm:ss"),
-            type : values.type
+            type : values.type,
+            defaultUrl : values.defaultUrl || ""
         }
         if(subType === "create") {
             projectData = {...projectData, ...{id : Math.random().toString(36).substr(2, 16), createdDate : format(new Date(), "yyyy-MM-dd HH:mm:ss")}}
@@ -39,7 +41,8 @@ const Project = ({subType}) => {
                 {...layout}
                 initialValues={{
                     title : projectData.title,
-                    type : projectData.type
+                    type : projectData.type,
+                    defaultUrl : projectData.defaultUrl
                 }}
                 onFinish={onFinish}
                 validateMessages={validateMessages}
@@ -49,7 +52,7 @@ const Project = ({subType}) => {
                     label="Title"
                     rules={[{required: true}]}
                 >
-                    <Input style={{width : 200}} placeholder="프로젝트명을 입력해주세요."/>
+                    <Input style={{width : 400}} placeholder="프로젝트명을 입력해주세요."/>
                 </Form.Item>
                 <Form.Item
                     name={['type']}
@@ -60,6 +63,12 @@ const Project = ({subType}) => {
                         <Radio value="pc">PC</Radio>
                         <Radio value="mobile">MOBILE</Radio>
                     </Radio.Group>
+                </Form.Item>
+                <Form.Item
+                    name={'defaultUrl'}
+                    label="Default Url"
+                >
+                    <TextArea style={{width : 400}} placeholder="대기중 페이지 URL을 입력해주세요."/>
                 </Form.Item>
                 <Form.Item
                     name="submit"

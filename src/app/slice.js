@@ -25,7 +25,9 @@ const postSlice = createSlice({
         projectList : [],
         projectData : {
             title : "",
-            id : ""
+            id : "",
+            type : "",
+            defaultUrl : ""
         },
         categoryList : [],
         categoryData : {

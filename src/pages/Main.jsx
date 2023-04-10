@@ -22,7 +22,7 @@ function Main() {
     const projectData = useSelector(selectProjectData);
 
     const createProject = () => {
-        projectData.id !== "" && dispatch(setProjectData({title : "", id : "", type : ""}));
+        projectData.id !== "" && dispatch(setProjectData({title : "", id : "", type : "", defaultUrl : ""}));
         dispatch(setModal({show: true, type: 'project', subType : 'create'}));
     }
     const updateProject = () => dispatch(setModal({show: true, type: 'project', subType : 'update'}));
@@ -58,7 +58,7 @@ function Main() {
                             style={{width: 300}}
                             onClick={() => {
                                 dispatch(setCategoryList([]))
-                                dispatch(setProjectData({title : item.title, id : item.id, type : item.type}))}
+                                dispatch(setProjectData({title : item.title, id : item.id, type : item.type, defaultUrl : item.defaultUrl}))}
                             }
                         >
                             <div style={{cursor: 'pointer'}} onClick={() => {navigate(`/detail/${item.id}`)}}>

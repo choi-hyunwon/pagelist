@@ -24,7 +24,6 @@ const Detail = () => {
     const params = useParams();
     const id = params.projectId;
     const projectList = useSelector(selectProjectList);
-    const projectData = useSelector(selectProjectData);
     const categoryList = useSelector(selectCategoryList);
     const pageList = useSelector(selectPageList);
     const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -71,13 +70,16 @@ const Detail = () => {
                 setIsMobile(val.type !== 'pc');
                 getPageApi({id :val.id});
                 dispatch(setCategoryList(val.category));
-                dispatch(setProjectData({id: val.id, title : val.title, type : val.type}))
+                dispatch(setProjectData({id: val.id, title : val.title, type : val.type, defaultUrl : val.defaultUrl}))
             }
         })
     },[projectList]);
 
     useEffect(() => {
         const categoryListCopy = JSON.parse(JSON.stringify(categoryList));
+        categoryListCopy.sort(function(a, b) {
+            return a.title > b.title ? -1 : a.title < b.title ? 1 : 0;
+        });
         for(let i = 0; i < pageList.length; i++){
             for(let j = 0; j < categoryListCopy.length; j++){
                 if(pageList[i].parentId === categoryListCopy[j].id){

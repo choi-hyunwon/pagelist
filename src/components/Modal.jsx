@@ -52,7 +52,7 @@ const Default = () => {
             okEvent : () => {
                 handleCancel();
             },
-            width : 400
+            width : 600
         },
         "create-project-success" : {
             body : "프로젝트 생성에 성공했습니다."
@@ -76,7 +76,7 @@ const Default = () => {
             okEvent : () => {
                 handleCancel();
             },
-            width : 400
+            width : 600
         },
         "create-category-success" : {
             body : "카테고리 생성에 성공했습니다."
@@ -100,7 +100,7 @@ const Default = () => {
             okEvent : () => {
                 handleCancel();
             },
-            width : 400
+            width : 600
         },
         "create-page-success" : {
             body : "페이지 생성에 성공했습니다."
