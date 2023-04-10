@@ -94,7 +94,7 @@ const Detail = () => {
                     <div className="text">{val['title']}</div>
                     {isLoggedIn &&
                         <Popover placement="right" style={{marginRight: 10}} content={categoryContent} trigger="hover">
-                            <SmallDashOutlined style={{margin:'3px 0 0 20px', width: 20, height:20, border: "1px solid #d9d9d9"}}/>
+                            <SmallDashOutlined style={{margin:'5px 0 0 20px', width: 20, height:20, border: "1px solid #d9d9d9", backgroundColor: '#FFFFFF', color: '#000000'}}/>
                         </Popover>
                     }
                 </div>
@@ -115,7 +115,7 @@ const Detail = () => {
                         </div>
                         {isLoggedIn &&
                             <Popover placement="right" content={pageContent} trigger="hover">
-                                <SmallDashOutlined style={{marginTop: 4, float : 'right', width: 20, height:20, border: "1px solid #d9d9d9", backgroundColor: 'white', color: 'black'}}/>
+                                <SmallDashOutlined style={{marginTop: 4, float : 'right', width: 20, height:20, border: "1px solid #d9d9d9", backgroundColor: '#FFFFFF', color: '#000000'}}/>
                             </Popover>
                         }
                     </div>
