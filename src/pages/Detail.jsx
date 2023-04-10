@@ -170,7 +170,7 @@ const Detail = () => {
     };
 
     return (
-        <div style={{display : 'flex'}}>
+        <div style={{display : 'flex', height : 'calc(100vh - 70px)'}}>
             <div style={{width: 380, backgroundColor:"#f4f4f4"}}>
                 {/*<h3 style={{margin: '5px 0 -7px 5px'}}>{projectData.title}</h3>*/}
                 {treeData.length > 0 &&
@@ -196,8 +196,8 @@ const Detail = () => {
                     />
                 }
             </div>
-            <div style={{ margin: `${isMobile ? '0 auto' : '0'}`, width: `${isMobile ? '375px' : '85%'}`, height: 800}}>
-                <iframe src={url} height="100%" width="100%"/>
+            <div style={{ margin: `${isMobile ? '0 auto' : '0'}`, width: `${isMobile ? '395px' : '85%'}`, height: '100%'}}>
+                <iframe src={url} height="100%" width="100%" style={{border : '1px solid transparent'}}/>
             </div>
         </div>
     )
